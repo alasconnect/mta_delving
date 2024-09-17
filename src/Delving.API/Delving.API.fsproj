@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Config.fs" />
+    <Compile Include="DataAccess\Schema.fs" />
+    <Compile Include="DataAccess\Types.fs" />
+    <Compile Include="Http\Types.fs" />
+    <Compile Include="Http\Helpers.fs" />
+    <Compile Include="Http\Auth.fs" />
+    <Compile Include="Http\Handlers.fs" />
+    <Compile Include="Http\Routes.fs" />
+    <Compile Include="Services\CommVStore.fs" />
+    <Compile Include="Services\LEBStore.fs" />
+    <Compile Include="Services\M4Store.fs" />
+    <Compile Include="Services\Default.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" />
+    <PackageReference Include="Dapper.FSharp" />
+    <PackageReference Include="Data.CommV" />
+    <PackageReference Include="Data.CommV.AspNetCore" />
+    <PackageReference Include="Data.CommV.Primitives" />
+    <PackageReference Include="Data.M4" />
+    <PackageReference Include="FSharp.Core" />
+    <PackageReference Include="Giraffe" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.FSharpLu.Json" />
+    <PackageReference Include="MTA.AspNetCore.Mvc.CommV.WebServices" />
+    <PackageReference Include="MTA.Extensions.M4" />
+    <PackageReference Include="MTA.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Npgsql" />
+    <PackageReference Include="Npgsql.FSharp" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Extensions.Hosting" />
+    <PackageReference Include="Serilog.Settings.Configuration" />
+    <PackageReference Include="Serilog.Sinks.Async" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Sinks.Grafana.Loki" />
+    <PackageReference Include="SqlHydra.Query" />
+    <PackageReference Include="System.Data.Odbc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Delving.API.Core\Delving.API.Core.fsproj" />
+  </ItemGroup>
+</Project>
