@@ -1,31 +1,7 @@
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
-
-## AUTO-DETECT
-##   Handle line endings automatically for files detected as
-##   text and leave all files detected as binary untouched.
-##   This will handle all files NOT defined below.
-*           text=auto
-
-## SOURCE CODE
-## Batch/Shell Scripts
-*.bat       text eol=crlf
-*.ps1       text eol=crlf
-*.sh        text eol=lf
-
-## Haskell
-*.hs        text eol=lf
-*.cabal     text eol=lf
-*.nix       text eol=lf
-
-## Make
-Makefile    text eol=lf
-*.mk        text eol=lf
-
-## Fonts
-*.woff      binary
-*.woff2     binary
+* text=auto
 
 ###############################################################################
 # Set default behavior for command prompt diff.
@@ -41,7 +17,7 @@ Makefile    text eol=lf
 #
 # Merging from the command prompt will add diff markers to the files if there
 # are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following
+# the diff markers are never inserted). Diff markers may cause the following 
 # file extensions to fail to load in VS. An alternative would be to treat
 # these files as binary and thus will always conflict and require user
 # intervention with every merge. To do so, just uncomment the entries below
@@ -70,9 +46,9 @@ Makefile    text eol=lf
 
 ###############################################################################
 # diff behavior for common document formats
-#
+# 
 # Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the
+# is only available from the command line. Turn it on by uncommenting the 
 # entries below.
 ###############################################################################
 #*.doc   diff=astextplain
