@@ -1,7 +1,7 @@
 openapi: '3.0.3'
 info:
   title: Delving API
-  description: An API for the Delving application used to search line equipment on a customer.
+  description: An API for the Delving application used to search backup data for line equipments on a customer.
   version: 'v1'
 servers:
   - url: 'http://localhost:5130'
@@ -19,10 +19,10 @@ paths:
             type: string
             minLength: 0
         - in: query
-          name: accountNumber
+          name: username
           schema:
-            type: integer
-            minimum: 0
+            type: string
+            minLength: 0
         - in: query
           name: phoneNumber
           schema:
