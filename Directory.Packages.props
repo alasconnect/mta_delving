@@ -6,15 +6,12 @@
     <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Dapper" Version="2.1.35" />
-    <PackageVersion Include="Dapper.FSharp" Version="4.9.0" />
     <PackageVersion Include="Data.M4" Version="2.0.3" />
     <PackageVersion Include="FSharp.Core" Version="8.0.400" />
     <PackageVersion Include="Giraffe" Version="7.0.1" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
     <PackageVersion Include="Microsoft.FSharpLu.Json" Version="0.11.7" />
     <PackageVersion Include="MTA.AspNetCore.Mvc.CommV.WebServices" Version="8.0.0" />
@@ -30,12 +27,10 @@
     <PackageVersion Include="Serilog.Enrichers.Environment" Version="3.0.1" />
     <PackageVersion Include="SqlHydra.Query" Version="2.5.1" />
     <PackageVersion Include="System.Data.Odbc" Version="8.0.0" />
-    <PackageVersion Include="ChargeCodeService.Client" Version="8.0.1" />
     <PackageVersion Include="Data.CommV" Version="3.3.0" />
     <PackageVersion Include="Data.CommV.AspNetCore" Version="3.3.0" />
     <PackageVersion Include="Data.CommV.Primitives" Version="1.0.0" />
     <PackageVersion Include="Data.MTA.Primitives" Version="1.0.0" />
-    <PackageVersion Include="Data.M4.Common" Version="1.1.1" />
     <PackageVersion Include="MTA.Extensions.Options.ConfigurationExtensions" Version="1.2.0" />
     <PackageVersion Include="MTA.Extensions.M4" Version="2.0.3" />
   </ItemGroup>

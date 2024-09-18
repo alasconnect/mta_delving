@@ -22,7 +22,7 @@ open Delving.API.DataAccess
 open Delving.API.Http.Routes
 open Delving.API.Services.Default
 open Delving.API.Services.CommVStore
-open Delving.API.Services.LEBStore
+open Delving.API.Services.LineEquipmentBackupStore
 open Delving.API.Services.M4Store
 
 // ---------------------------------
@@ -100,7 +100,7 @@ let addServices (bldr : WebApplicationBuilder) =
         .AddScoped<LineEquipmentBackupDbContext>()
         .AddScoped<ICommVStore, DefaultCommVStore>()
         .AddScoped<IM4Store, DefaultM4Store>()
-        .AddScoped<ILEBStore, DefaultLEBStore>()
+        .AddScoped<ILineEquipmentBackupStore, DefaultLineEquipmentBackupStore>()
         .AddScoped<IServices, DefaultServices>()
     |> ignore
 

@@ -5,9 +5,10 @@ open Microsoft.Extensions.Logging
 open Delving.API.Core
 
 type DefaultServices
-    (loggerFactory : ILoggerFactory, commVStore : ICommVStore, m4Store : IM4Store, lebStore : ILEBStore) =
+    (loggerFactory : ILoggerFactory, commVStore : ICommVStore, m4Store : IM4Store, lebStore : ILineEquipmentBackupStore)
+    =
     interface IServices with
         member _.LoggerFactory = loggerFactory
         member _.CommVStore = commVStore
         member _.M4Store = m4Store
-        member _.LEBStore = lebStore
+        member _.LineEquipmentBackupStore = lebStore

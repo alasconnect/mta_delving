@@ -3,7 +3,7 @@ module Delving.API.Core.Interfaces
 
 open Microsoft.Extensions.Logging
 
-type ILEBStore =
+type ILineEquipmentBackupStore =
     abstract PLACEHOLDER : unit -> Async<unit>
 
 type IM4Store =
@@ -14,6 +14,6 @@ type ICommVStore =
 
 type IServices =
     abstract LoggerFactory : ILoggerFactory
-    abstract LEBStore : ILEBStore
+    abstract LineEquipmentBackupStore : ILineEquipmentBackupStore
     abstract M4Store : IM4Store
     abstract CommVStore : ICommVStore
