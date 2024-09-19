@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Matanuska Telecom Association</Authors>
+    <Company>Matanuska Telecom Association</Company>
+    <WarningsAsErrors>FS0025</WarningsAsErrors>
+    <NoWarn>104</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(CONCOURSE_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+</Project>

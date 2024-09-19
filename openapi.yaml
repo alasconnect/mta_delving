@@ -1,0 +1,83 @@
+openapi: '3.0.3'
+info:
+  title: Delving API
+  description: An API for the Delving application used to search backup data for line equipments on a customer.
+  version: 'v1'
+servers:
+  - url: 'http://localhost:5130'
+security:
+  - bearerAuth: []
+paths:
+  '/api/v1/delving':
+    get:
+      operationId: getDelving
+      summary: <TODO>
+      parameters:
+        - in: query
+          name: customerName
+          schema:
+            type: string
+            minLength: 0
+        - in: query
+          name: username
+          schema:
+            type: string
+            minLength: 0
+        - in: query
+          name: phoneNumber
+          schema:
+            type: string
+            minLength: 7
+            maxLength: 11
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Exception'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - Title
+        - Type
+        - Detail
+        - Status
+      properties:
+        Title:
+          type: string
+        Type:
+          type: string
+        Detail:
+          type: string
+        Status:
+          type: integer
+  responses:
+    Success:
+      description: Completed successfully
+    Exception:
+      description: An error caused by an exception
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Missing or invalid values
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Item was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
