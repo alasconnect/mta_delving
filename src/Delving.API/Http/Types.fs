@@ -12,7 +12,8 @@ type ErrorResponse =
     | InvalidPhoneNumberInUrl of string
     | InvalidUsernameInUrl of string
     | InvalidCustomerNameInUrl of string
-    | M4DataError of string
+    | InvalidHouseIdInUrl of int
+    | InvalidImportIdInUrl of string
 
 type ErrorResponseBody =
     {
@@ -32,7 +33,8 @@ module ErrorResponse =
         | InvalidPhoneNumberInUrl _ -> "errors/InvalidPhoneNumberInUrl/"
         | InvalidUsernameInUrl _ -> "errors/InvalidUsernameInUrl/"
         | InvalidCustomerNameInUrl _ -> "errors/InvalidCustomerNameInUrl/"
-        | M4DataError _ -> "errors/M4DataError/"
+        | InvalidHouseIdInUrl _ -> "errors/InvalidStructureIdInUrl/"
+        | InvalidImportIdInUrl _ -> "errors/InvalidImportIdInUrl/"
     let toUri (error : ErrorResponse) : Uri =
         let ref = toUriRef error
         new Uri(ref, UriKind.Relative)
@@ -44,7 +46,8 @@ module ErrorResponse =
         | InvalidPhoneNumberInUrl _ -> "Invalid phone number in URL."
         | InvalidUsernameInUrl _ -> "Invalid username in URL."
         | InvalidCustomerNameInUrl _ -> "Invalid customer name in URL."
-        | M4DataError _ -> "An error occurred while processing data from M4."
+        | InvalidHouseIdInUrl _ -> "Invalid structure ID in URL."
+        | InvalidImportIdInUrl _ -> "Invalid import ID in URL."
     let toDetail (error : ErrorResponse) : string =
         match error with
         | UnknownError msg -> msg
@@ -53,7 +56,8 @@ module ErrorResponse =
         | InvalidPhoneNumberInUrl pn -> sprintf "Value '%s' is not a valid phone number." pn
         | InvalidUsernameInUrl un -> sprintf "Value '%s' is not a valid username." un
         | InvalidCustomerNameInUrl cn -> sprintf "Value '%s' is not a valid account number." cn
-        | M4DataError msg -> msg
+        | InvalidHouseIdInUrl sid -> sprintf "Value '%i' is not a valid structure ID." sid
+        | InvalidImportIdInUrl iid -> sprintf "Value '%s' is not a valid import ID." iid
     let toErrorResponseBody
         (errorUriPrefix : Uri)
         (status : HttpStatusCode)

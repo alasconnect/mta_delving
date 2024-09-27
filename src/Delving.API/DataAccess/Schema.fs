@@ -49,170 +49,6 @@ module private DataReaderExtensions =
 
 module ``public`` =
     [<CLIMutable>]
-    type AccountDetails =
-        { [<ProviderDbType("Numeric")>]
-          AccountNumber: decimal
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Text")>]
-          AccountTypeId: string
-          [<ProviderDbType("Text")>]
-          ServiceTypeId: string
-          [<ProviderDbType("Text")>]
-          Status: string
-          [<ProviderDbType("Numeric")>]
-          CustomerNumber: decimal
-          [<ProviderDbType("Text")>]
-          FirstName: Option<string>
-          [<ProviderDbType("Text")>]
-          LastName: Option<string>
-          [<ProviderDbType("Text")>]
-          SubscriberId: Option<string>
-          [<ProviderDbType("Text")>]
-          ServiceName: Option<string>
-          [<ProviderDbType("Text")>]
-          AreaCode: string
-          [<ProviderDbType("Text")>]
-          Exchange: string
-          [<ProviderDbType("Text")>]
-          LineNumber: string
-          [<ProviderDbType("Numeric")>]
-          HouseId: decimal
-          [<ProviderDbType("Numeric")>]
-          StreetNumber: decimal
-          [<ProviderDbType("Text")>]
-          StreetName: Option<string>
-          [<ProviderDbType("Text")>]
-          City: Option<string> }
-
-    let AccountDetails = table<AccountDetails>
-
-    [<CLIMutable>]
-    type CustomerService =
-        { [<ProviderDbType("Integer")>]
-          Id: int
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Integer")>]
-          StructureId: int
-          [<ProviderDbType("Text")>]
-          CustomerServiceNumber: string
-          [<ProviderDbType("Text")>]
-          AreaCode: Option<string>
-          [<ProviderDbType("Text")>]
-          Exchange: Option<string>
-          [<ProviderDbType("Text")>]
-          LineNumber: Option<string> }
-
-    let CustomerService = table<CustomerService>
-
-    [<CLIMutable>]
-    type Equipment =
-        { [<ProviderDbType("Integer")>]
-          Id: int
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Integer")>]
-          LinecardId: Option<int>
-          [<ProviderDbType("Integer")>]
-          LinecardElementId: Option<int>
-          [<ProviderDbType("Integer")>]
-          CustomerServiceId: Option<int>
-          [<ProviderDbType("Text")>]
-          Category: string
-          [<ProviderDbType("Text")>]
-          Type: Option<string>
-          [<ProviderDbType("Text")>]
-          Name: string
-          [<ProviderDbType("Integer")>]
-          StatusId: int
-          [<ProviderDbType("Text")>]
-          Status: string
-          [<ProviderDbType("Integer")>]
-          CentralOfficeId: Option<int>
-          [<ProviderDbType("Text")>]
-          CentralOfficeName: Option<string> }
-
-    let Equipment = table<Equipment>
-
-    [<CLIMutable>]
-    type HouseDirections =
-        { [<ProviderDbType("Numeric")>]
-          HouseId: decimal
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Numeric")>]
-          Sequence: decimal
-          [<ProviderDbType("Text")>]
-          DrivingDirections: Option<string> }
-
-    let HouseDirections = table<HouseDirections>
-
-    [<CLIMutable>]
-    type Import =
-        { [<ProviderDbType("Uuid")>]
-          Id: System.Guid
-          [<ProviderDbType("Timestamp")>]
-          StartedAt: System.DateTime
-          [<ProviderDbType("Timestamp")>]
-          CompletedAt: Option<System.DateTime>
-          [<ProviderDbType("Text")>]
-          ErrorMessage: Option<string>
-          [<ProviderDbType("Boolean")>]
-          IsLatest: bool }
-
-    let Import = table<Import>
-
-    [<CLIMutable>]
-    type Linecard =
-        { [<ProviderDbType("Integer")>]
-          Id: int
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Integer")>]
-          CustomerServiceId: Option<int>
-          [<ProviderDbType("Integer")>]
-          StructureId: int
-          [<ProviderDbType("Integer")>]
-          LinecardElementId: int
-          [<ProviderDbType("Integer")>]
-          LinecardSeq: int
-          [<ProviderDbType("Integer")>]
-          StatusId: int
-          [<ProviderDbType("Text")>]
-          Status: string
-          [<ProviderDbType("Integer")>]
-          CentralOfficeId: Option<int>
-          [<ProviderDbType("Text")>]
-          CentralOfficeName: Option<string> }
-
-    let Linecard = table<Linecard>
-
-    [<CLIMutable>]
-    type Structure =
-        { [<ProviderDbType("Integer")>]
-          Id: int
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Numeric")>]
-          HouseId: Option<decimal> }
-
-    let Structure = table<Structure>
-
-    [<CLIMutable>]
-    type Terminal =
-        { [<ProviderDbType("Integer")>]
-          Id: int
-          [<ProviderDbType("Uuid")>]
-          ImportId: System.Guid
-          [<ProviderDbType("Integer")>]
-          LoopLength: int
-          [<ProviderDbType("Integer")>]
-          PrePostLoopLength: int }
-
-    let Terminal = table<Terminal>
-
-    [<CLIMutable>]
     type VersionInfo =
         { [<ProviderDbType("Bigint")>]
           Version: int64
@@ -222,6 +58,148 @@ module ``public`` =
           Description: Option<string> }
 
     let VersionInfo = table<VersionInfo>
+
+    [<CLIMutable>]
+    type account_details =
+        { [<ProviderDbType("Numeric")>]
+          account_number: decimal
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Char")>]
+          account_type_id: string
+          [<ProviderDbType("Char")>]
+          service_type_id: string
+          [<ProviderDbType("Varchar")>]
+          status: string
+          [<ProviderDbType("Numeric")>]
+          customer_number: decimal
+          [<ProviderDbType("Varchar")>]
+          first_name: string
+          [<ProviderDbType("Varchar")>]
+          last_name: string
+          [<ProviderDbType("Varchar")>]
+          subscriber_id: string
+          [<ProviderDbType("Varchar")>]
+          service_name: string
+          [<ProviderDbType("Char")>]
+          area_code: string
+          [<ProviderDbType("Char")>]
+          exchange: string
+          [<ProviderDbType("Char")>]
+          line_number: string
+          [<ProviderDbType("Numeric")>]
+          house_id: decimal
+          [<ProviderDbType("Numeric")>]
+          street_number: decimal
+          [<ProviderDbType("Varchar")>]
+          street_name: string
+          [<ProviderDbType("Varchar")>]
+          city: string }
+
+    let account_details = table<account_details>
+
+    [<CLIMutable>]
+    type customer_service =
+        { [<ProviderDbType("Integer")>]
+          id: int
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Integer")>]
+          structure_id: int
+          [<ProviderDbType("Varchar")>]
+          customer_service_number: string
+          [<ProviderDbType("Numeric")>]
+          commv_account_number: decimal
+          [<ProviderDbType("Char")>]
+          area_code: string
+          [<ProviderDbType("Char")>]
+          exchange: string
+          [<ProviderDbType("Char")>]
+          line_number: string }
+
+    let customer_service = table<customer_service>
+
+    [<CLIMutable>]
+    type equipment =
+        { [<ProviderDbType("Integer")>]
+          id: int
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Integer")>]
+          linecard_id: Option<int>
+          [<ProviderDbType("Integer")>]
+          linecard_element_id: Option<int>
+          [<ProviderDbType("Varchar")>]
+          category: string
+          [<ProviderDbType("Varchar")>]
+          ``type``: string
+          [<ProviderDbType("Varchar")>]
+          name: string
+          [<ProviderDbType("Integer")>]
+          status_id: int
+          [<ProviderDbType("Varchar")>]
+          status: string
+          [<ProviderDbType("Integer")>]
+          central_office_id: Option<int>
+          [<ProviderDbType("Char")>]
+          central_office_name: string }
+
+    let equipment = table<equipment>
+
+    [<CLIMutable>]
+    type house_directions =
+        { [<ProviderDbType("Numeric")>]
+          house_id: decimal
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Varchar")>]
+          driving_directions: string }
+
+    let house_directions = table<house_directions>
+
+    [<CLIMutable>]
+    type import =
+        { [<ProviderDbType("Uuid")>]
+          id: System.Guid
+          [<ProviderDbType("TimestampTz")>]
+          started_at: System.DateTime
+          [<ProviderDbType("TimestampTz")>]
+          completed_at: Option<System.DateTime>
+          [<ProviderDbType("Varchar")>]
+          error_message: Option<string>
+          [<ProviderDbType("Boolean")>]
+          is_latest: bool }
+
+    let import = table<import>
+
+    [<CLIMutable>]
+    type linecard =
+        { [<ProviderDbType("Integer")>]
+          id: int
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Integer")>]
+          customer_service_id: Option<int>
+          [<ProviderDbType("Integer")>]
+          structure_id: int
+          [<ProviderDbType("Integer")>]
+          linecard_element_id: int
+          [<ProviderDbType("Integer")>]
+          linecard_seq: int
+          [<ProviderDbType("Boolean")>]
+          is_bonded: bool
+          [<ProviderDbType("Boolean")>]
+          is_left_in: bool
+          [<ProviderDbType("Integer")>]
+          status_id: int
+          [<ProviderDbType("Varchar")>]
+          status: string
+          [<ProviderDbType("Integer")>]
+          central_office_id: Option<int>
+          [<ProviderDbType("Char")>]
+          central_office_name: string }
+
+    let linecard = table<linecard>
 
     [<CLIMutable>]
     type migration =
@@ -234,195 +212,31 @@ module ``public`` =
 
     let migration = table<migration>
 
+    [<CLIMutable>]
+    type structure =
+        { [<ProviderDbType("Integer")>]
+          id: int
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Numeric")>]
+          house_id: Option<decimal> }
+
+    let structure = table<structure>
+
+    [<CLIMutable>]
+    type terminal =
+        { [<ProviderDbType("Integer")>]
+          id: int
+          [<ProviderDbType("Uuid")>]
+          import_id: System.Guid
+          [<ProviderDbType("Integer")>]
+          loop_length: int
+          [<ProviderDbType("Integer")>]
+          pre_post_loop_length: int }
+
+    let terminal = table<terminal>
+
     module Readers =
-        type AccountDetailsReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.AccountNumber = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "AccountNumber")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.AccountTypeId = RequiredColumn(reader, getOrdinal, reader.GetString, "AccountTypeId")
-            member __.ServiceTypeId = RequiredColumn(reader, getOrdinal, reader.GetString, "ServiceTypeId")
-            member __.Status = RequiredColumn(reader, getOrdinal, reader.GetString, "Status")
-            member __.CustomerNumber = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "CustomerNumber")
-            member __.FirstName = OptionColumn(reader, getOrdinal, reader.GetString, "FirstName")
-            member __.LastName = OptionColumn(reader, getOrdinal, reader.GetString, "LastName")
-            member __.SubscriberId = OptionColumn(reader, getOrdinal, reader.GetString, "SubscriberId")
-            member __.ServiceName = OptionColumn(reader, getOrdinal, reader.GetString, "ServiceName")
-            member __.AreaCode = RequiredColumn(reader, getOrdinal, reader.GetString, "AreaCode")
-            member __.Exchange = RequiredColumn(reader, getOrdinal, reader.GetString, "Exchange")
-            member __.LineNumber = RequiredColumn(reader, getOrdinal, reader.GetString, "LineNumber")
-            member __.HouseId = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "HouseId")
-            member __.StreetNumber = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "StreetNumber")
-            member __.StreetName = OptionColumn(reader, getOrdinal, reader.GetString, "StreetName")
-            member __.City = OptionColumn(reader, getOrdinal, reader.GetString, "City")
-
-            member __.Read() =
-                { AccountNumber = __.AccountNumber.Read()
-                  ImportId = __.ImportId.Read()
-                  AccountTypeId = __.AccountTypeId.Read()
-                  ServiceTypeId = __.ServiceTypeId.Read()
-                  Status = __.Status.Read()
-                  CustomerNumber = __.CustomerNumber.Read()
-                  FirstName = __.FirstName.Read()
-                  LastName = __.LastName.Read()
-                  SubscriberId = __.SubscriberId.Read()
-                  ServiceName = __.ServiceName.Read()
-                  AreaCode = __.AreaCode.Read()
-                  Exchange = __.Exchange.Read()
-                  LineNumber = __.LineNumber.Read()
-                  HouseId = __.HouseId.Read()
-                  StreetNumber = __.StreetNumber.Read()
-                  StreetName = __.StreetName.Read()
-                  City = __.City.Read() }
-                : AccountDetails
-
-            member __.ReadIfNotNull() =
-                if __.AccountNumber.IsNull() then None else Some(__.Read())
-
-        type CustomerServiceReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.Id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "Id")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.StructureId = RequiredColumn(reader, getOrdinal, reader.GetInt32, "StructureId")
-            member __.CustomerServiceNumber = RequiredColumn(reader, getOrdinal, reader.GetString, "CustomerServiceNumber")
-            member __.AreaCode = OptionColumn(reader, getOrdinal, reader.GetString, "AreaCode")
-            member __.Exchange = OptionColumn(reader, getOrdinal, reader.GetString, "Exchange")
-            member __.LineNumber = OptionColumn(reader, getOrdinal, reader.GetString, "LineNumber")
-
-            member __.Read() =
-                { Id = __.Id.Read()
-                  ImportId = __.ImportId.Read()
-                  StructureId = __.StructureId.Read()
-                  CustomerServiceNumber = __.CustomerServiceNumber.Read()
-                  AreaCode = __.AreaCode.Read()
-                  Exchange = __.Exchange.Read()
-                  LineNumber = __.LineNumber.Read() }
-                : CustomerService
-
-            member __.ReadIfNotNull() =
-                if __.Id.IsNull() then None else Some(__.Read())
-
-        type EquipmentReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.Id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "Id")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.LinecardId = OptionColumn(reader, getOrdinal, reader.GetInt32, "LinecardId")
-            member __.LinecardElementId = OptionColumn(reader, getOrdinal, reader.GetInt32, "LinecardElementId")
-            member __.CustomerServiceId = OptionColumn(reader, getOrdinal, reader.GetInt32, "CustomerServiceId")
-            member __.Category = RequiredColumn(reader, getOrdinal, reader.GetString, "Category")
-            member __.Type = OptionColumn(reader, getOrdinal, reader.GetString, "Type")
-            member __.Name = RequiredColumn(reader, getOrdinal, reader.GetString, "Name")
-            member __.StatusId = RequiredColumn(reader, getOrdinal, reader.GetInt32, "StatusId")
-            member __.Status = RequiredColumn(reader, getOrdinal, reader.GetString, "Status")
-            member __.CentralOfficeId = OptionColumn(reader, getOrdinal, reader.GetInt32, "CentralOfficeId")
-            member __.CentralOfficeName = OptionColumn(reader, getOrdinal, reader.GetString, "CentralOfficeName")
-
-            member __.Read() =
-                { Id = __.Id.Read()
-                  ImportId = __.ImportId.Read()
-                  LinecardId = __.LinecardId.Read()
-                  LinecardElementId = __.LinecardElementId.Read()
-                  CustomerServiceId = __.CustomerServiceId.Read()
-                  Category = __.Category.Read()
-                  Type = __.Type.Read()
-                  Name = __.Name.Read()
-                  StatusId = __.StatusId.Read()
-                  Status = __.Status.Read()
-                  CentralOfficeId = __.CentralOfficeId.Read()
-                  CentralOfficeName = __.CentralOfficeName.Read() }
-                : Equipment
-
-            member __.ReadIfNotNull() =
-                if __.Id.IsNull() then None else Some(__.Read())
-
-        type HouseDirectionsReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.HouseId = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "HouseId")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.Sequence = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "Sequence")
-            member __.DrivingDirections = OptionColumn(reader, getOrdinal, reader.GetString, "DrivingDirections")
-
-            member __.Read() =
-                { HouseId = __.HouseId.Read()
-                  ImportId = __.ImportId.Read()
-                  Sequence = __.Sequence.Read()
-                  DrivingDirections = __.DrivingDirections.Read() }
-                : HouseDirections
-
-            member __.ReadIfNotNull() =
-                if __.HouseId.IsNull() then None else Some(__.Read())
-
-        type ImportReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.Id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "Id")
-            member __.StartedAt = RequiredColumn(reader, getOrdinal, reader.GetDateTime, "StartedAt")
-            member __.CompletedAt = OptionColumn(reader, getOrdinal, reader.GetDateTime, "CompletedAt")
-            member __.ErrorMessage = OptionColumn(reader, getOrdinal, reader.GetString, "ErrorMessage")
-            member __.IsLatest = RequiredColumn(reader, getOrdinal, reader.GetBoolean, "IsLatest")
-
-            member __.Read() =
-                { Id = __.Id.Read()
-                  StartedAt = __.StartedAt.Read()
-                  CompletedAt = __.CompletedAt.Read()
-                  ErrorMessage = __.ErrorMessage.Read()
-                  IsLatest = __.IsLatest.Read() }
-                : Import
-
-            member __.ReadIfNotNull() =
-                if __.Id.IsNull() then None else Some(__.Read())
-
-        type LinecardReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.Id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "Id")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.CustomerServiceId = OptionColumn(reader, getOrdinal, reader.GetInt32, "CustomerServiceId")
-            member __.StructureId = RequiredColumn(reader, getOrdinal, reader.GetInt32, "StructureId")
-            member __.LinecardElementId = RequiredColumn(reader, getOrdinal, reader.GetInt32, "LinecardElementId")
-            member __.LinecardSeq = RequiredColumn(reader, getOrdinal, reader.GetInt32, "LinecardSeq")
-            member __.StatusId = RequiredColumn(reader, getOrdinal, reader.GetInt32, "StatusId")
-            member __.Status = RequiredColumn(reader, getOrdinal, reader.GetString, "Status")
-            member __.CentralOfficeId = OptionColumn(reader, getOrdinal, reader.GetInt32, "CentralOfficeId")
-            member __.CentralOfficeName = OptionColumn(reader, getOrdinal, reader.GetString, "CentralOfficeName")
-
-            member __.Read() =
-                { Id = __.Id.Read()
-                  ImportId = __.ImportId.Read()
-                  CustomerServiceId = __.CustomerServiceId.Read()
-                  StructureId = __.StructureId.Read()
-                  LinecardElementId = __.LinecardElementId.Read()
-                  LinecardSeq = __.LinecardSeq.Read()
-                  StatusId = __.StatusId.Read()
-                  Status = __.Status.Read()
-                  CentralOfficeId = __.CentralOfficeId.Read()
-                  CentralOfficeName = __.CentralOfficeName.Read() }
-                : Linecard
-
-            member __.ReadIfNotNull() =
-                if __.Id.IsNull() then None else Some(__.Read())
-
-        type StructureReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.Id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "Id")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.HouseId = OptionColumn(reader, getOrdinal, reader.GetDecimal, "HouseId")
-
-            member __.Read() =
-                { Id = __.Id.Read()
-                  ImportId = __.ImportId.Read()
-                  HouseId = __.HouseId.Read() }
-                : Structure
-
-            member __.ReadIfNotNull() =
-                if __.Id.IsNull() then None else Some(__.Read())
-
-        type TerminalReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
-            member __.Id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "Id")
-            member __.ImportId = RequiredColumn(reader, getOrdinal, reader.GetGuid, "ImportId")
-            member __.LoopLength = RequiredColumn(reader, getOrdinal, reader.GetInt32, "LoopLength")
-            member __.PrePostLoopLength = RequiredColumn(reader, getOrdinal, reader.GetInt32, "PrePostLoopLength")
-
-            member __.Read() =
-                { Id = __.Id.Read()
-                  ImportId = __.ImportId.Read()
-                  LoopLength = __.LoopLength.Read()
-                  PrePostLoopLength = __.PrePostLoopLength.Read() }
-                : Terminal
-
-            member __.ReadIfNotNull() =
-                if __.Id.IsNull() then None else Some(__.Read())
-
         type VersionInfoReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
             member __.Version = RequiredColumn(reader, getOrdinal, reader.GetInt64, "Version")
             member __.AppliedOn = OptionColumn(reader, getOrdinal, reader.GetDateTime, "AppliedOn")
@@ -437,6 +251,166 @@ module ``public`` =
             member __.ReadIfNotNull() =
                 if __.Version.IsNull() then None else Some(__.Read())
 
+        type account_detailsReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.account_number = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "account_number")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.account_type_id = RequiredColumn(reader, getOrdinal, reader.GetString, "account_type_id")
+            member __.service_type_id = RequiredColumn(reader, getOrdinal, reader.GetString, "service_type_id")
+            member __.status = RequiredColumn(reader, getOrdinal, reader.GetString, "status")
+            member __.customer_number = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "customer_number")
+            member __.first_name = RequiredColumn(reader, getOrdinal, reader.GetString, "first_name")
+            member __.last_name = RequiredColumn(reader, getOrdinal, reader.GetString, "last_name")
+            member __.subscriber_id = RequiredColumn(reader, getOrdinal, reader.GetString, "subscriber_id")
+            member __.service_name = RequiredColumn(reader, getOrdinal, reader.GetString, "service_name")
+            member __.area_code = RequiredColumn(reader, getOrdinal, reader.GetString, "area_code")
+            member __.exchange = RequiredColumn(reader, getOrdinal, reader.GetString, "exchange")
+            member __.line_number = RequiredColumn(reader, getOrdinal, reader.GetString, "line_number")
+            member __.house_id = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "house_id")
+            member __.street_number = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "street_number")
+            member __.street_name = RequiredColumn(reader, getOrdinal, reader.GetString, "street_name")
+            member __.city = RequiredColumn(reader, getOrdinal, reader.GetString, "city")
+
+            member __.Read() =
+                { account_number = __.account_number.Read()
+                  import_id = __.import_id.Read()
+                  account_type_id = __.account_type_id.Read()
+                  service_type_id = __.service_type_id.Read()
+                  status = __.status.Read()
+                  customer_number = __.customer_number.Read()
+                  first_name = __.first_name.Read()
+                  last_name = __.last_name.Read()
+                  subscriber_id = __.subscriber_id.Read()
+                  service_name = __.service_name.Read()
+                  area_code = __.area_code.Read()
+                  exchange = __.exchange.Read()
+                  line_number = __.line_number.Read()
+                  house_id = __.house_id.Read()
+                  street_number = __.street_number.Read()
+                  street_name = __.street_name.Read()
+                  city = __.city.Read() }
+                : account_details
+
+            member __.ReadIfNotNull() =
+                if __.account_number.IsNull() then None else Some(__.Read())
+
+        type customer_serviceReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "id")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.structure_id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "structure_id")
+            member __.customer_service_number = RequiredColumn(reader, getOrdinal, reader.GetString, "customer_service_number")
+            member __.commv_account_number = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "commv_account_number")
+            member __.area_code = RequiredColumn(reader, getOrdinal, reader.GetString, "area_code")
+            member __.exchange = RequiredColumn(reader, getOrdinal, reader.GetString, "exchange")
+            member __.line_number = RequiredColumn(reader, getOrdinal, reader.GetString, "line_number")
+
+            member __.Read() =
+                { id = __.id.Read()
+                  import_id = __.import_id.Read()
+                  structure_id = __.structure_id.Read()
+                  customer_service_number = __.customer_service_number.Read()
+                  commv_account_number = __.commv_account_number.Read()
+                  area_code = __.area_code.Read()
+                  exchange = __.exchange.Read()
+                  line_number = __.line_number.Read() }
+                : customer_service
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
+        type equipmentReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "id")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.linecard_id = OptionColumn(reader, getOrdinal, reader.GetInt32, "linecard_id")
+            member __.linecard_element_id = OptionColumn(reader, getOrdinal, reader.GetInt32, "linecard_element_id")
+            member __.category = RequiredColumn(reader, getOrdinal, reader.GetString, "category")
+            member __.``type`` = RequiredColumn(reader, getOrdinal, reader.GetString, "type")
+            member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
+            member __.status_id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "status_id")
+            member __.status = RequiredColumn(reader, getOrdinal, reader.GetString, "status")
+            member __.central_office_id = OptionColumn(reader, getOrdinal, reader.GetInt32, "central_office_id")
+            member __.central_office_name = RequiredColumn(reader, getOrdinal, reader.GetString, "central_office_name")
+
+            member __.Read() =
+                { id = __.id.Read()
+                  import_id = __.import_id.Read()
+                  linecard_id = __.linecard_id.Read()
+                  linecard_element_id = __.linecard_element_id.Read()
+                  category = __.category.Read()
+                  ``type`` = __.``type``.Read()
+                  name = __.name.Read()
+                  status_id = __.status_id.Read()
+                  status = __.status.Read()
+                  central_office_id = __.central_office_id.Read()
+                  central_office_name = __.central_office_name.Read() }
+                : equipment
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
+        type house_directionsReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.house_id = RequiredColumn(reader, getOrdinal, reader.GetDecimal, "house_id")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.driving_directions = RequiredColumn(reader, getOrdinal, reader.GetString, "driving_directions")
+
+            member __.Read() =
+                { house_id = __.house_id.Read()
+                  import_id = __.import_id.Read()
+                  driving_directions = __.driving_directions.Read() }
+                : house_directions
+
+            member __.ReadIfNotNull() =
+                if __.house_id.IsNull() then None else Some(__.Read())
+
+        type importReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "id")
+            member __.started_at = RequiredColumn(reader, getOrdinal, reader.GetDateTime, "started_at")
+            member __.completed_at = OptionColumn(reader, getOrdinal, reader.GetDateTime, "completed_at")
+            member __.error_message = OptionColumn(reader, getOrdinal, reader.GetString, "error_message")
+            member __.is_latest = RequiredColumn(reader, getOrdinal, reader.GetBoolean, "is_latest")
+
+            member __.Read() =
+                { id = __.id.Read()
+                  started_at = __.started_at.Read()
+                  completed_at = __.completed_at.Read()
+                  error_message = __.error_message.Read()
+                  is_latest = __.is_latest.Read() }
+                : import
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
+        type linecardReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "id")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.customer_service_id = OptionColumn(reader, getOrdinal, reader.GetInt32, "customer_service_id")
+            member __.structure_id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "structure_id")
+            member __.linecard_element_id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "linecard_element_id")
+            member __.linecard_seq = RequiredColumn(reader, getOrdinal, reader.GetInt32, "linecard_seq")
+            member __.is_bonded = RequiredColumn(reader, getOrdinal, reader.GetBoolean, "is_bonded")
+            member __.is_left_in = RequiredColumn(reader, getOrdinal, reader.GetBoolean, "is_left_in")
+            member __.status_id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "status_id")
+            member __.status = RequiredColumn(reader, getOrdinal, reader.GetString, "status")
+            member __.central_office_id = OptionColumn(reader, getOrdinal, reader.GetInt32, "central_office_id")
+            member __.central_office_name = RequiredColumn(reader, getOrdinal, reader.GetString, "central_office_name")
+
+            member __.Read() =
+                { id = __.id.Read()
+                  import_id = __.import_id.Read()
+                  customer_service_id = __.customer_service_id.Read()
+                  structure_id = __.structure_id.Read()
+                  linecard_element_id = __.linecard_element_id.Read()
+                  linecard_seq = __.linecard_seq.Read()
+                  is_bonded = __.is_bonded.Read()
+                  is_left_in = __.is_left_in.Read()
+                  status_id = __.status_id.Read()
+                  status = __.status.Read()
+                  central_office_id = __.central_office_id.Read()
+                  central_office_name = __.central_office_name.Read() }
+                : linecard
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
         type migrationReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
             member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "id")
             member __.name = RequiredColumn(reader, getOrdinal, reader.GetString, "name")
@@ -447,6 +421,36 @@ module ``public`` =
                   name = __.name.Read()
                   timestamp = __.timestamp.Read() }
                 : migration
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
+        type structureReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "id")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.house_id = OptionColumn(reader, getOrdinal, reader.GetDecimal, "house_id")
+
+            member __.Read() =
+                { id = __.id.Read()
+                  import_id = __.import_id.Read()
+                  house_id = __.house_id.Read() }
+                : structure
+
+            member __.ReadIfNotNull() =
+                if __.id.IsNull() then None else Some(__.Read())
+
+        type terminalReader(reader: Npgsql.NpgsqlDataReader, getOrdinal) =
+            member __.id = RequiredColumn(reader, getOrdinal, reader.GetInt32, "id")
+            member __.import_id = RequiredColumn(reader, getOrdinal, reader.GetGuid, "import_id")
+            member __.loop_length = RequiredColumn(reader, getOrdinal, reader.GetInt32, "loop_length")
+            member __.pre_post_loop_length = RequiredColumn(reader, getOrdinal, reader.GetInt32, "pre_post_loop_length")
+
+            member __.Read() =
+                { id = __.id.Read()
+                  import_id = __.import_id.Read()
+                  loop_length = __.loop_length.Read()
+                  pre_post_loop_length = __.pre_post_loop_length.Read() }
+                : terminal
 
             member __.ReadIfNotNull() =
                 if __.id.IsNull() then None else Some(__.Read())
@@ -469,50 +473,50 @@ type HydraReader(reader: Npgsql.NpgsqlDataReader) =
         accFieldCount <- accFieldCount + fieldNames.Length
         fun col -> dictionary.Item col
         
-    let lazypublicAccountDetails = lazy (``public``.Readers.AccountDetailsReader(reader, buildGetOrdinal typeof<``public``.AccountDetails>))
-    let lazypublicCustomerService = lazy (``public``.Readers.CustomerServiceReader(reader, buildGetOrdinal typeof<``public``.CustomerService>))
-    let lazypublicEquipment = lazy (``public``.Readers.EquipmentReader(reader, buildGetOrdinal typeof<``public``.Equipment>))
-    let lazypublicHouseDirections = lazy (``public``.Readers.HouseDirectionsReader(reader, buildGetOrdinal typeof<``public``.HouseDirections>))
-    let lazypublicImport = lazy (``public``.Readers.ImportReader(reader, buildGetOrdinal typeof<``public``.Import>))
-    let lazypublicLinecard = lazy (``public``.Readers.LinecardReader(reader, buildGetOrdinal typeof<``public``.Linecard>))
-    let lazypublicStructure = lazy (``public``.Readers.StructureReader(reader, buildGetOrdinal typeof<``public``.Structure>))
-    let lazypublicTerminal = lazy (``public``.Readers.TerminalReader(reader, buildGetOrdinal typeof<``public``.Terminal>))
     let lazypublicVersionInfo = lazy (``public``.Readers.VersionInfoReader(reader, buildGetOrdinal typeof<``public``.VersionInfo>))
+    let lazypublicaccount_details = lazy (``public``.Readers.account_detailsReader(reader, buildGetOrdinal typeof<``public``.account_details>))
+    let lazypubliccustomer_service = lazy (``public``.Readers.customer_serviceReader(reader, buildGetOrdinal typeof<``public``.customer_service>))
+    let lazypublicequipment = lazy (``public``.Readers.equipmentReader(reader, buildGetOrdinal typeof<``public``.equipment>))
+    let lazypublichouse_directions = lazy (``public``.Readers.house_directionsReader(reader, buildGetOrdinal typeof<``public``.house_directions>))
+    let lazypublicimport = lazy (``public``.Readers.importReader(reader, buildGetOrdinal typeof<``public``.import>))
+    let lazypubliclinecard = lazy (``public``.Readers.linecardReader(reader, buildGetOrdinal typeof<``public``.linecard>))
     let lazypublicmigration = lazy (``public``.Readers.migrationReader(reader, buildGetOrdinal typeof<``public``.migration>))
-    member __.``public.AccountDetails`` = lazypublicAccountDetails.Value
-    member __.``public.CustomerService`` = lazypublicCustomerService.Value
-    member __.``public.Equipment`` = lazypublicEquipment.Value
-    member __.``public.HouseDirections`` = lazypublicHouseDirections.Value
-    member __.``public.Import`` = lazypublicImport.Value
-    member __.``public.Linecard`` = lazypublicLinecard.Value
-    member __.``public.Structure`` = lazypublicStructure.Value
-    member __.``public.Terminal`` = lazypublicTerminal.Value
+    let lazypublicstructure = lazy (``public``.Readers.structureReader(reader, buildGetOrdinal typeof<``public``.structure>))
+    let lazypublicterminal = lazy (``public``.Readers.terminalReader(reader, buildGetOrdinal typeof<``public``.terminal>))
     member __.``public.VersionInfo`` = lazypublicVersionInfo.Value
+    member __.``public.account_details`` = lazypublicaccount_details.Value
+    member __.``public.customer_service`` = lazypubliccustomer_service.Value
+    member __.``public.equipment`` = lazypublicequipment.Value
+    member __.``public.house_directions`` = lazypublichouse_directions.Value
+    member __.``public.import`` = lazypublicimport.Value
+    member __.``public.linecard`` = lazypubliclinecard.Value
     member __.``public.migration`` = lazypublicmigration.Value
+    member __.``public.structure`` = lazypublicstructure.Value
+    member __.``public.terminal`` = lazypublicterminal.Value
     member private __.AccFieldCount with get () = accFieldCount and set (value) = accFieldCount <- value
 
     member private __.GetReaderByName(entity: string, isOption: bool) =
         match entity, isOption with
-        | "public.AccountDetails", false -> __.``public.AccountDetails``.Read >> box
-        | "public.AccountDetails", true -> __.``public.AccountDetails``.ReadIfNotNull >> box
-        | "public.CustomerService", false -> __.``public.CustomerService``.Read >> box
-        | "public.CustomerService", true -> __.``public.CustomerService``.ReadIfNotNull >> box
-        | "public.Equipment", false -> __.``public.Equipment``.Read >> box
-        | "public.Equipment", true -> __.``public.Equipment``.ReadIfNotNull >> box
-        | "public.HouseDirections", false -> __.``public.HouseDirections``.Read >> box
-        | "public.HouseDirections", true -> __.``public.HouseDirections``.ReadIfNotNull >> box
-        | "public.Import", false -> __.``public.Import``.Read >> box
-        | "public.Import", true -> __.``public.Import``.ReadIfNotNull >> box
-        | "public.Linecard", false -> __.``public.Linecard``.Read >> box
-        | "public.Linecard", true -> __.``public.Linecard``.ReadIfNotNull >> box
-        | "public.Structure", false -> __.``public.Structure``.Read >> box
-        | "public.Structure", true -> __.``public.Structure``.ReadIfNotNull >> box
-        | "public.Terminal", false -> __.``public.Terminal``.Read >> box
-        | "public.Terminal", true -> __.``public.Terminal``.ReadIfNotNull >> box
         | "public.VersionInfo", false -> __.``public.VersionInfo``.Read >> box
         | "public.VersionInfo", true -> __.``public.VersionInfo``.ReadIfNotNull >> box
+        | "public.account_details", false -> __.``public.account_details``.Read >> box
+        | "public.account_details", true -> __.``public.account_details``.ReadIfNotNull >> box
+        | "public.customer_service", false -> __.``public.customer_service``.Read >> box
+        | "public.customer_service", true -> __.``public.customer_service``.ReadIfNotNull >> box
+        | "public.equipment", false -> __.``public.equipment``.Read >> box
+        | "public.equipment", true -> __.``public.equipment``.ReadIfNotNull >> box
+        | "public.house_directions", false -> __.``public.house_directions``.Read >> box
+        | "public.house_directions", true -> __.``public.house_directions``.ReadIfNotNull >> box
+        | "public.import", false -> __.``public.import``.Read >> box
+        | "public.import", true -> __.``public.import``.ReadIfNotNull >> box
+        | "public.linecard", false -> __.``public.linecard``.Read >> box
+        | "public.linecard", true -> __.``public.linecard``.ReadIfNotNull >> box
         | "public.migration", false -> __.``public.migration``.Read >> box
         | "public.migration", true -> __.``public.migration``.ReadIfNotNull >> box
+        | "public.structure", false -> __.``public.structure``.Read >> box
+        | "public.structure", true -> __.``public.structure``.ReadIfNotNull >> box
+        | "public.terminal", false -> __.``public.terminal``.Read >> box
+        | "public.terminal", true -> __.``public.terminal``.ReadIfNotNull >> box
         | _ -> failwith $"Could not read type '{entity}' because no generated reader exists."
 
     static member private GetPrimitiveReader(t: System.Type, reader: Npgsql.NpgsqlDataReader, isOpt: bool, isNullable: bool) =

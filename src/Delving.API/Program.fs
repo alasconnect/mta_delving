@@ -1,5 +1,6 @@
 module Delving.API.App
 
+open Giraffe
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Cors.Infrastructure
 open Microsoft.AspNetCore.Hosting
@@ -9,11 +10,8 @@ open Microsoft.Extensions.Logging
 open Microsoft.Extensions.Options
 open Microsoft.FSharpLu.Json
 open Newtonsoft.Json
-
-open System
-
-open Giraffe
 open Serilog
+open System
 
 open Delving.API.Core
 
@@ -21,9 +19,7 @@ open Delving.API.Config
 open Delving.API.DataAccess
 open Delving.API.Http.Routes
 open Delving.API.Services.Default
-open Delving.API.Services.CommVStore
 open Delving.API.Services.LineEquipmentBackupStore
-open Delving.API.Services.M4Store
 
 // ---------------------------------
 // Error handler
@@ -92,14 +88,8 @@ let addServices (bldr : WebApplicationBuilder) =
     bldr.Services
         .Configure<RootConfig>(bldr.Configuration)
         .Configure(RootConfig.toDelvingApiConfig)
-        .Configure(RootConfig.toCommVWebServicesConfig)
-        .AddM4DbContext(RootConfig.toM4DbConfig)
-        .AddM4Client(RootConfig.toM4ClientConfig)
-        .AddCommVDbContext(RootConfig.toCommVDbConfig)
-        .AddCommVWebServicesClient(RootConfig.toCommVWebServicesConfig)
+        .Configure(RootConfig.toLineEquipmentBackupDbContextConfig)
         .AddScoped<LineEquipmentBackupDbContext>()
-        .AddScoped<ICommVStore, DefaultCommVStore>()
-        .AddScoped<IM4Store, DefaultM4Store>()
         .AddScoped<ILineEquipmentBackupStore, DefaultLineEquipmentBackupStore>()
         .AddScoped<IServices, DefaultServices>()
     |> ignore

@@ -2,18 +2,16 @@
 module Delving.API.Core.Interfaces
 
 open Microsoft.Extensions.Logging
+open System
+
+open Data.CommV.Primitives
+
+open Delving.API.Core.Library
 
 type ILineEquipmentBackupStore =
-    abstract PLACEHOLDER : unit -> Async<unit>
-
-type IM4Store =
-    abstract PLACEHOLDER : unit -> Async<unit>
-
-type ICommVStore =
-    abstract PLACEHOLDER : unit -> Async<unit>
+    abstract GetSampleCustomerEquipmentAsync : unit -> Async<CustomerLineEquipment list>
+    abstract GetHouseDirectionsAsync : AccountNumber -> Guid -> Async<HouseDirections option>
 
 type IServices =
     abstract LoggerFactory : ILoggerFactory
     abstract LineEquipmentBackupStore : ILineEquipmentBackupStore
-    abstract M4Store : IM4Store
-    abstract CommVStore : ICommVStore

@@ -8,21 +8,13 @@ open Microsoft.Extensions.Logging
 open System
 open System.Net
 
-open Data.M4.Common
+open Data.CommV.Primitives
 
 open Delving.API.Config
 open Delving.API.Http
-
-[<AutoOpen>]
-module Default =
-    let (|M4DataException|_|) (exn : Exception) =
-        match exn with
-        | :? M4DataException as ex -> Some ex
-        | :? AggregateException as ex ->
-            match ex.InnerException with
-            | :? M4DataException as ex' -> Some ex'
-            | _ -> None
-        | _ -> None
+open Delving.API.Json
+open Delving.API.Core
+open Delving.API.Core.Library
 
 type private HandleError = HandleError
 
@@ -59,13 +51,48 @@ module ErrorHandlers =
                 return! ErrorResponse.toHttpHandler statusCode body next ctx
             }
 
-type private HandleGetCustomersRequest = HandleGetCustomersRequest
+type private HandleGetCustomerEquipmentRequest = HandleGetCustomerEquipmentRequest
+type private HandleGetHouseDirectionsRequest = HandleGetHouseDirectionsRequest
 
 module SearchHandlers =
     open ErrorHandlers
-    let handleGetPLACEHOLDERAsync =
+    let handleGetSampleCustomerEquipmentAsync =
         fun (next : HttpFunc) (ctx : HttpContext) ->
             task {
-                let logger = ctx.GetService<ILogger<HandleGetCustomersRequest>>()
-                return! handleErrorQuietly HttpStatusCode.BadRequest EmptySearchTerm next ctx
+                let logger = ctx.GetService<ILogger<HandleGetCustomerEquipmentRequest>>()
+                let services = ctx.GetService<IServices>()
+
+                try
+                    let! result = findSampleCustomerEquipmentAsync services
+                    match result.Length > 0 with
+                    | true ->
+                        let jsonResult =
+                            result |> List.map CustomerLineEquipmentJson.ofDomain |> List.distinct
+
+                        logger.LogInformation("Returning success ({StatusCode})", 200)
+                        return! json jsonResult next ctx
+                    | false -> return! RequestErrors.notFound (setBody [||]) next ctx
+                with ex ->
+                    return!
+                        handleException logger ex HttpStatusCode.InternalServerError (UnknownError ex.Message) next ctx
+            }
+
+    let handleGetHouseDirectionsAsync (account : AccountNumber) (impId : Guid) =
+        fun (next : HttpFunc) (ctx : HttpContext) ->
+            task {
+                let logger = ctx.GetService<ILogger<HandleGetHouseDirectionsRequest>>()
+                let services = ctx.GetService<IServices>()
+
+                try
+                    let! result = findHouseDirectionsAsync services account impId
+
+                    match result with
+                    | Some hd ->
+                        let jsonResult = HouseDirectionsJson.ofDomain hd
+                        logger.LogInformation("Returning success ({StatusCode})", 200)
+                        return! json jsonResult next ctx
+                    | None -> return! RequestErrors.notFound (setBody [||]) next ctx
+                with ex ->
+                    return!
+                        handleException logger ex HttpStatusCode.InternalServerError (UnknownError ex.Message) next ctx
             }

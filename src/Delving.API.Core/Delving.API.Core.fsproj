@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Types.fs" />
     <Compile Include="Interfaces.fs" />
     <Compile Include="Library.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Data.CommV.Primitives" />
+    <PackageReference Include="Data.M4" />
     <PackageReference Include="FSharp.Core" />
     <PackageReference Include="Microsoft.Extensions.Logging" />
   </ItemGroup>

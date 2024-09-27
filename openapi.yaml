@@ -8,10 +8,10 @@ servers:
 security:
   - bearerAuth: []
 paths:
-  '/api/v1/delving':
+  '/api/v1/sample/':
     get:
-      operationId: getDelving
-      summary: <TODO>
+      operationId: getSampleLineEquipment
+      summary: Gets a display sample of a line equipment. (TODO - Development only, this is not a final endpoint)
       parameters:
         - in: query
           name: customerName
@@ -31,7 +31,43 @@ paths:
             maxLength: 11
       responses:
         '200':
-          $ref: '#/components/responses/Success'
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CustomerLineEquipment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/Exception'
+  '/api/v1/directions/{accountNumber}/{importId}':
+    get:
+      operationId: getHouseDirections
+      summary: Gets the driving directions to a customer's house.
+      parameters:
+        - in: path
+          name: accountNumber
+          schema:
+            type: integer
+            minimum: 0
+          required: true
+        - in: path
+          name: importId
+          schema:
+            type: string
+            minLength: 0
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HouseDirections'
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
@@ -44,6 +80,103 @@ components:
       type: http
       scheme: bearer
   schemas:
+    PhoneNumber:
+      type: object
+      required:
+        - AreaCode
+        - Exchange
+        - LineNumber
+      properties:
+        AreaCode:
+          type: string
+        Exchange:
+          type: string
+        LineNumber:
+          type: string
+    CustomerLineEquipment:
+      type: object
+      required:
+        - CustomerName
+        - AccountNumber
+        - PhoneNumber
+        - StructureId
+        - SubscriberId
+        - ServiceType
+        - EquipmentName
+        - EquipmentCategory
+        - EquipmentType
+        - EquipmentStatus
+        - Clli
+        - IsBonded
+        - IsLeftIn
+        - LoopLength
+        - PrePostLoopLength
+        - EquipmentId
+        - LineCardId
+        - ImportId
+      properties:
+        CustomerName:
+          type: string
+        AccountNumber:
+          type: integer
+          minimum: 0
+        PhoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        StructureId:
+          type: integer
+          minimum: 0
+        SubscriberId:
+          type: string
+        ServiceType:
+          type: string
+        EquipmentName:
+          type: string
+        EquipmentCategory:
+          type: string
+        EquipmentType:
+          type: string
+        EquipmentStatus:
+          type: string
+        Clli:
+          type: string
+        IsBonded:
+          type: boolean
+        IsLeftIn:
+          type: boolean
+        LoopLength:
+          type: integer
+          minimum: 0
+        PrePostLoopLength:
+          type: integer
+          minimum: 0
+        EquipmentId:
+          type: integer
+          minimum: 0
+        LineCardId:
+          type: integer
+          minimum: 0
+        ImportId:
+          type: string
+    HouseDirections:
+      type: object
+      required:
+        - HouseId
+        - StreetNumber
+        - StreetName
+        - City
+      properties:
+        HouseId:
+          type: integer
+          minimum: 0
+        StreetNumber:
+          type: integer
+          minimum: 0
+        StreetName:
+          type: string
+        City:
+          type: string
+        DrivingDirections:
+          type: string
     ErrorResponse:
       type: object
       required:
